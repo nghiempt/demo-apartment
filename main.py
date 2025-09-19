@@ -336,10 +336,10 @@ async def search_apartment(
         raise HTTPException(status_code=500, detail=f"Lỗi server: {str(e)}")
 
 # OpenAI Configuration
-openai.api_key = os.getenv("OPENAI_API_KEY")
-if not openai.api_key:
+api_key = os.getenv("OPENAI_API_KEY")
+if not api_key:
     raise ValueError("OPENAI_API_KEY environment variable is required")
-client = openai.OpenAI(api_key=openai.api_key)
+client = openai.OpenAI(api_key=api_key)
 
 class ChatAgent:
     def __init__(self, searcher: ApartmentSearcher):
