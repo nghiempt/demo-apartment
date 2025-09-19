@@ -1,0 +1,75 @@
+# LOCAL DEVELOPMENT (macOS/Windows)
+python main.py
+streamlit run chat_ui.py --server.port 8501
+
+# ========================================
+# DOCKER DEPLOYMENT (Khuyến nghị)
+# ========================================
+
+## � Chạy với Docker (Đơn giản nhất)
+
+### 1. Setup Environment
+cp .env.example .env
+# Chỉnh sửa .env và thêm OPENAI_API_KEY
+
+### 2. Start cả FE + BE
+docker-compose up --build
+
+### 3. Truy cập
+- Frontend: http://localhost:8501
+- Backend: http://localhost:8000
+- API Docs: http://localhost:8000/docs
+
+### 4. Dừng
+docker-compose down
+# ========================================
+# UBUNTU DEPLOYMENT (Manual)
+# ========================================
+
+## 🔑 SETUP ENVIRONMENT VARIABLES (BẮT BUỘC)
+
+### Tạo file .env từ template:
+cp .env.example .env
+
+### Chỉnh sửa file .env và thêm OpenAI API key:
+nano .env
+# Thay "your_openai_api_key_here" bằng API key thật của bạn
+
+## 🚀 Deployment với Docker trên Ubuntu
+
+### Cài đặt Docker
+sudo apt update
+sudo apt install -y docker.io docker-compose
+sudo systemctl start docker
+sudo systemctl enable docker
+
+### Clone và chạy
+git clone <repo-url>
+cd apartment-scope-demo
+cp .env.example .env
+# Chỉnh sửa .env
+docker-compose up -d --build
+
+## 🛠️ Manual Installation (không Docker)
+
+### Setup environment:
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y python3.11 python3.11-venv python3.11-dev python3-pip
+sudo apt install -y libgl1-mesa-glx libglib2.0-0 libsm6 libxext6 libxrender-dev libgomp1
+python3.11 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+
+### Chạy Backend (FastAPI):
+source .venv/bin/activate
+python main.py
+
+### Chạy Frontend (Streamlit) - terminal khác:
+source .venv/bin/activate  
+streamlit run chat_ui.py --server.port 8501 --server.address 0.0.0.0
+
+## 🔧 Troubleshooting:
+- Kiểm tra port: sudo ufw allow 8000 && sudo ufw allow 8501
+- Kiểm tra Docker: docker-compose logs
+- Restart: docker-compose restart
