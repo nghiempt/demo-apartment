@@ -2,6 +2,7 @@ import streamlit as st
 import requests
 import json
 from datetime import datetime
+import os
 
 # Page configuration
 st.set_page_config(
@@ -58,7 +59,7 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 
 # API configuration
-API_BASE_URL = "http://localhost:8000"
+API_BASE_URL = os.getenv("API_BASE_URL", "http://localhost:8000")
 
 def call_chat_api(query):
     """Call the chat API endpoint"""

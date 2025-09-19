@@ -75,7 +75,14 @@ sudo systemctl enable docker
 git clone <repo-url>
 cd apartment-scope-demo
 cp .env.example .env
-# Chỉnh sửa .env
+# Chỉnh sửa .env với OPENAI_API_KEY
+# Đối với production server, cập nhật API_BASE_URL trong .env nếu cần
+
+### Chạy với Docker scripts
+chmod +x start-docker.sh stop-docker.sh
+./start-docker.sh
+
+### Hoặc dùng docker-compose (nếu có version mới)
 docker-compose up -d --build
 
 ## 🛠️ Manual Installation (không Docker)

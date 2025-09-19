@@ -53,6 +53,7 @@ docker run -d \
     --network apartment-network \
     -p 8501:8501 \
     -e OPENAI_API_KEY="$OPENAI_API_KEY" \
+    -e API_BASE_URL="http://apartment-backend:8000" \
     apartment-app \
     streamlit run chat_ui.py --server.port 8501 --server.address 0.0.0.0
 
