@@ -11,6 +11,9 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
+# Upgrade pip to latest version
+RUN pip install --upgrade pip
+
 # Copy requirements first for better Docker layer caching
 COPY requirements.txt .
 
