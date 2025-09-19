@@ -12,12 +12,29 @@ cp .env.example .env
 ```
 
 ### 2. Chạy ứng dụng
+
+#### CÁCH 1: Docker Scripts (Khuyến nghị cho Ubuntu)
+```bash
+# Cấp quyền thực thi
+chmod +x start-docker.sh stop-docker.sh
+
+# Start cả Backend + Frontend
+./start-docker.sh
+
+# Dừng khi cần
+./stop-docker.sh
+```
+
+#### CÁCH 2: Docker Compose (Nếu có version mới)
 ```bash
 # Build và start cả Backend + Frontend
 docker-compose up --build
 
 # Hoặc chạy ở background
 docker-compose up -d --build
+
+# Dừng ứng dụng
+docker-compose down
 ```
 
 ### 3. Truy cập ứng dụng

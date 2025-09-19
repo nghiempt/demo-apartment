@@ -1,4 +1,32 @@
-# LOCAL DEVELOPMENT (macOS/Windows)
+# LO# ========================================
+# DOCKER DEPLOYMENT (Khuyến nghị)
+# ========================================
+
+## 🐳 CÁCH 1: Chạy với Docker Scripts (Đơn giản nhất)
+
+### 1. Setup Environment
+cp .env.example .env
+# Chỉnh sửa .env và thêm OPENAI_API_KEY
+
+### 2. Start cả FE + BE
+chmod +x start-docker.sh stop-docker.sh
+./start-docker.sh
+
+### 3. Truy cập
+- Frontend: http://localhost:8501
+- Backend: http://localhost:8000
+- API Docs: http://localhost:8000/docs
+
+### 4. Dừng
+./stop-docker.sh
+
+## 🐳 CÁCH 2: Docker Compose (Nếu có version mới)
+
+### Start với docker-compose
+docker-compose up --build
+
+### Dừng
+docker-compose downOS/Windows)
 python main.py
 streamlit run chat_ui.py --server.port 8501
 
